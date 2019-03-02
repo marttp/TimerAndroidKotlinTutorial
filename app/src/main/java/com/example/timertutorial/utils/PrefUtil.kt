@@ -10,6 +10,7 @@ class PrefUtil {
         private const val PREVIOUS_TIMER_LENGTH_SECOND_ID = "mart.timer.previous_time_length"
         private const val TIMER_STATE_ID = "mart.timer.timer_state"
         private const val SECONDS_REMAINING_ID = "mart.timer.seconds_remaining"
+        private const val ALARM_SET_TIME_ID = "mart.timer.background_time"
 
         fun getTimerLength(context: Context): Int {
             return 1
@@ -47,6 +48,17 @@ class PrefUtil {
         fun setSecondRemaining(seconds: Long, context: Context){
             val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
             editor.putLong(SECONDS_REMAINING_ID, seconds)
+            editor.apply()
+        }
+
+        fun getAlarmSetTime(context: Context): Long{
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return  preferences.getLong(ALARM_SET_TIME_ID, 0)
+        }
+
+        fun setAlarmSetTime(time: Long, context: Context){
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putLong(ALARM_SET_TIME_ID, time)
             editor.apply()
         }
     }
